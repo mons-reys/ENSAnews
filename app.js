@@ -23,6 +23,9 @@ app.get('/', (req, res) =>{
 app.get('/services', (req, res) =>{
     res.render('services');
 });
+app.get('/post', (req, res) =>{
+    res.render('post');
+});
 app.get('/about', (req, res) =>{
     res.render('about');
 });

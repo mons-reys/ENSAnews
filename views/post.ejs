@@ -1,0 +1,82 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- font awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!-- costume css -->
+    <link rel="stylesheet" href="/styles.css">
+    <title>ENSAnews | Home</title>
+</head>
+<body>
+   <header>
+        <%- include ('./partials/header.ejs') %>
+   </header>
+   <article>
+       <div class="container">
+        <h2>the best player in the world</h2>
+        <div class="carousel carousel-slider center">
+            <div class="carousel-fixed-item center">
+                <p class="white-text">this article made by mons</p>
+            </div>
+            <div class="carousel-item red white-text" href="#one!">
+              <h2>First Panel</h2>
+              <p class="white-text">This is your first panel</p>
+            </div>
+            <div class="carousel-item amber white-text" href="#two!">
+              <h2>Second Panel</h2>
+              <p class="white-text">This is your second panel</p>
+            </div>
+            <div class="carousel-item green white-text" href="#three!">
+              <h2>Third Panel</h2>
+              <p class="white-text">This is your third panel</p>
+            </div>
+            <div class="carousel-item blue white-text" href="#four!">
+              <h2>Fourth Panel</h2>
+              <p class="white-text">This is your fourth panel</p>
+            </div>
+          </div>
+
+          <div class="post-content">
+              
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deleniti nobis quos deserunt exercitationem expedita a ne
+                sciunt quae blanditiis corrupti iure laborum nulla maxime suscipit quaerat officiis illum, impedit sit incidunt?</p>
+              <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deleniti nobis quos deserunt exercitationem expedita a ne
+                sciunt quae blanditiis corrupti iure laborum nulla maxime suscipit quaerat officiis illum, impedit sit incidunt?</p>
+              <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deleniti nobis quos deserunt exercitationem expedita a ne
+                sciunt quae blanditiis corrupti iure laborum nulla maxime suscipit quaerat officiis illum, impedit sit incidunt?</p>
+              <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deleniti nobis quos deserunt exercitationem expedita a ne
+                sciunt quae blanditiis corrupti iure laborum nulla maxime suscipit quaerat officiis illum, impedit sit incidunt?</p>
+              <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deleniti nobis quos deserunt exercitationem expedita a ne
+                sciunt quae blanditiis corrupti iure laborum nulla maxime suscipit quaerat officiis illum, impedit sit incidunt?</p>
+              <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deleniti nobis quos deserunt exercitationem expedita a ne
+                sciunt
+          </div>
+       </div>
+   </article>
+       
+
+   <footer class="page-footer grey darken-3">
+        <%- include ('./partials/footer.ejs') %>
+   </footer>
+<!-- jquey -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<!-- Compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<!-- sidenav and nav script  -->
+<script>
+    $(document).ready(function(){
+        $('.sidenav').sidenav();
+        $('.carousel.carousel-slider').carousel({
+            fullWidth: true,
+            indicators: true
+        });
+    });
+</script>  
+</body>
+</html>
