@@ -25,47 +25,34 @@
             <h1>All Blogs</h1>
             <!-- post -->
             <div class="row">
-                <div class="col s12 l6">
-                    <div class="card">
-                        <div class="card-image">
-                            <img src="img/curry.jpg" alt="">
-                            <a href="#" class="halfway-fab btn-floating pink pulse">
-                                <i class="material-icons">notifications</i>
-                            </a>
+                <%if(blogs.length > 0) { %>
+                    <% blogs.forEach(blog => { %>   
+                        <div class="col s12 l6">
+                            <div class="card">
+                                <div class="card-image">
+                                    <img src="img/curry.jpg" alt="">
+                                    <a href="#" class="halfway-fab btn-floating pink pulse">
+                                        <i class="material-icons">notifications</i>
+                                    </a>
+                                </div>
+                                <div class="card-content">
+                                    <span class="card-title"><%= blog.title %></span>
+                                    <p><%= blog.snippet %></p>
+                                </div>
+                                <div class="card-action">
+                                    <a href="/blog" class="indigo-text">more details <span><i class="material-icons right">arrow_forward</i></span></a>
+                                </div>
+                            </div>
                         </div>
-                        <div class="card-content">
-                            <span class="card-title">Curry delesious</span>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci tempora quae velit ducimus, minus nihil atque tempore praesentiu
-                            m voluptate! Eligendi ea voluptates aliquid laborum! Animi doloremque maxime quae molestias eius.</p>
-                        </div>
-                        <div class="card-action">
-                            <a href="#" class="indigo-text">more details <span><i class="material-icons right">arrow_forward</i></span></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col s12 l6">
-                    <div class="card">
-                        <div class="card-image">
-                            <img src="img/curry.jpg" alt="">
-                            <a href="#" class="halfway-fab btn-floating pink pulse">
-                                <i class="material-icons">notifications</i>
-                            </a>
-                        </div>
-                        <div class="card-content">
-                            <span class="card-title">Curry delesious</span>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci tempora quae velit ducimus, minus nihil atque tempore praesentiu
-                            m voluptate! Eligendi ea voluptates aliquid laborum! Animi doloremque maxime quae molestias eius.</p>
-                        </div>
-                        <div class="card-action">
-                            <a href="#" class="indigo-text">more details <span><i class="material-icons right">arrow_forward</i></span></a>
-                        </div>
-                    </div>
-                </div>
+                    <% }); %> 
+                <% } else { %>  
+                    <p>no blogs found :'(</p> 
+                <% } %>  
                 <div class="col s12 center">
                     <ul class="pagination ">
                         <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
                         <li class="active indigo lighten-1"><a href="#!">1</a></li>
-                        <li class="waves-effect"><a href="#!">2</a></li>
+                        <li class="waves-effect "><a href="#!">2</a></li>
                         <li class="waves-effect"><a href="#!">3</a></li>
                         <li class="waves-effect"><a href="#!">4</a></li>
                         <li class="waves-effect"><a href="#!">5</a></li>
