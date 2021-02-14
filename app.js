@@ -2,6 +2,7 @@ const { response } = require('express');
 const express = require('express');
 const mongoose = require('mongoose');
 const Blog = require('./models/blog');
+const Comment = require('./models/comment');
 
 
 const app = express();
@@ -22,38 +23,58 @@ mongoose.connect(dbURL, {
 
 //middleware and static files
 app.use(express.static('public'));
-
-/* app.use((req, res, next) => {
-    console.log('try middlewares');
-    next();
-}) */
+app.use(express.urlencoded({extended: true}));
 
 //set the ejs view engine
 app.set('view engine', 'ejs');
 
 
 //routes 
-//responsre to a request 
+
+//handle the blogs
 app.get('/', (req, res) =>{
-    Blog.find()
+    //-1: from the newest to the oldest
+         Blog.find().sort({createdAt: -1})
         .then(result => {
             res.render('index', {blogs: result});
         }).catch(err => console.log(err));
 });
+
 app.get('/services', (req, res) =>{
     res.render('services');
 });
 
-app.get('/blog', (req, res) =>{
-    res.render('blog');
+app.get('/blog/details/:id', (req, res) =>{
+    const id = req.params.id;
+    Blog.findById(id)
+        .then(result =>{
+            res.render('blog', {blog: result});
+        })
+        .catch(err => console.log(err));
 });
+
+
 app.get('/about', (req, res) =>{
     res.render('about');
 });
+
 app.get('/blogs/create', (req, res) =>{
     res.render('create');
 });
 
-app.use((req, res) => {
+
+//handle the comments
+app.post('/blog/details/:id', (req, res) =>{
+    const commentToSave = {blogId: req.params.id, ...req.body}
+    const comment = new Comment(commentToSave);
+    comment.save()
+           .then(result =>{
+               res.redirect('/blog/details/' + req.params.id);
+           })
+           .catch(err => console.log(err));
+ });
+
+ //404 middleware
+ app.use((req, res) => {
     res.status(404).render('404');
 })

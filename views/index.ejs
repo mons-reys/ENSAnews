@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <!-- costume css -->
     <link rel="stylesheet" href="/styles.css">
-    <title>ENSAnews | Home</title>
+    <title>ENSAnews</title>
 </head>
 <body>
    <header>
@@ -40,7 +40,7 @@
                                     <p><%= blog.snippet %></p>
                                 </div>
                                 <div class="card-action">
-                                    <a href="/blog" class="indigo-text">more details <span><i class="material-icons right">arrow_forward</i></span></a>
+                                    <a href="/blog/details/<%= blog._id%> " class="indigo-text">more details <span><i class="material-icons right">arrow_forward</i></span></a>
                                 </div>
                             </div>
                         </div>

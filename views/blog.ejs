@@ -18,47 +18,45 @@
         <%- include ('./partials/header.ejs') %>
    </header>
    <article>
-       <div class="container">
-        <h2>the best player in the world</h2>
+      <div class="container">
+        <h2><%= blog.title %> </h2>
         <div class="carousel carousel-slider center">
-            <div class="carousel-fixed-item center">
-                <p class="white-text">this article made by mons</p>
-            </div>
-            <div class="carousel-item red white-text" href="#one!">
-              <h2>First Panel</h2>
-              <p class="white-text">This is your first panel</p>
-            </div>
-            <div class="carousel-item amber white-text" href="#two!">
-              <h2>Second Panel</h2>
-              <p class="white-text">This is your second panel</p>
-            </div>
-            <div class="carousel-item green white-text" href="#three!">
-              <h2>Third Panel</h2>
-              <p class="white-text">This is your third panel</p>
-            </div>
-            <div class="carousel-item blue white-text" href="#four!">
-              <h2>Fourth Panel</h2>
-              <p class="white-text">This is your fourth panel</p>
-            </div>
+          <div class="carousel-fixed-item center">
+              <p class="white-text">this article made by mons</p>
           </div>
-
-          <div class="post-content">
-              
-            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deleniti nobis quos deserunt exercitationem expedita a ne
-                sciunt quae blanditiis corrupti iure laborum nulla maxime suscipit quaerat officiis illum, impedit sit incidunt?</p>
-              <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deleniti nobis quos deserunt exercitationem expedita a ne
-                sciunt quae blanditiis corrupti iure laborum nulla maxime suscipit quaerat officiis illum, impedit sit incidunt?</p>
-              <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deleniti nobis quos deserunt exercitationem expedita a ne
-                sciunt quae blanditiis corrupti iure laborum nulla maxime suscipit quaerat officiis illum, impedit sit incidunt?</p>
-              <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deleniti nobis quos deserunt exercitationem expedita a ne
-                sciunt quae blanditiis corrupti iure laborum nulla maxime suscipit quaerat officiis illum, impedit sit incidunt?</p>
-              <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deleniti nobis quos deserunt exercitationem expedita a ne
-                sciunt quae blanditiis corrupti iure laborum nulla maxime suscipit quaerat officiis illum, impedit sit incidunt?</p>
-              <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deleniti nobis quos deserunt exercitationem expedita a ne
-                sciunt
+          <div class="carousel-item red white-text" href="#one!">
+            <h2>First Panel</h2>
+            <p class="white-text">This is your first panel</p>
           </div>
-       </div>
+          <div class="carousel-item amber white-text" href="#two!">
+            <h2>Second Panel</h2>
+            <p class="white-text">This is your second panel</p>
+          </div>
+          <div class="carousel-item green white-text" href="#three!">
+            <h2>Third Panel</h2>
+            <p class="white-text">This is your third panel</p>
+          </div>
+          <div class="carousel-item blue white-text" href="#four!">
+            <h2>Fourth Panel</h2>
+            <p class="white-text">This is your fourth panel</p>
+          </div>
+        </div>
+        <div class="post-content">
+          <p><%= blog.body %> </p>
+        </div>
+        <!-- divider -->
+        <div class="divider"></div>
+      </div>
    </article>
+
+   
+   <!-- comments section -->
+   <div class="container">
+    
+   </div>
+
+   <!-- add comments -->
+   <%- include('./partials/commentForm')  %> 
        
 
    <footer class="page-footer grey darken-3">
