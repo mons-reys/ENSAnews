@@ -48,7 +48,12 @@ app.get('/blog/details/:id', (req, res) =>{
     const id = req.params.id;
     Blog.findById(id)
         .then(result =>{
-            res.render('blog', {blog: result});
+            Comment.find({blogId: id})
+                    .then(commentsResult =>{
+                        console.log(commentsResult);
+                        res.render('blog', {blog: result, comments: commentsResult});
+                    })
+            
         })
         .catch(err => console.log(err));
 });
