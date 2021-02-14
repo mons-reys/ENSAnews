@@ -3,9 +3,13 @@ const express = require('express');
 const mongoose = require('mongoose');
 const Blog = require('./models/blog');
 const Comment = require('./models/comment');
-
+const moment = require('moment');
 
 const app = express();
+
+
+//set the ejs view engine
+app.set('view engine', 'ejs');
 
 //connect to mongoDB
 const dbURL = 'mongodb+srv://mons:rowrow2020@cluster0.tqs3m.mongodb.net/ensanews?retryWrites=true&w=majority';
@@ -25,19 +29,26 @@ mongoose.connect(dbURL, {
 app.use(express.static('public'));
 app.use(express.urlencoded({extended: true}));
 
-//set the ejs view engine
-app.set('view engine', 'ejs');
 
 
-//routes 
+
+//routes
+//costume functions
+
+//to find data based on the collection and the view path
+const getFromCollection = (collection, view, req, res) =>{
+     //-1: from the newest to the oldest
+     collection.find().sort({createdAt: -1})
+     .then(result => {
+         res.render(view, {blogs: result});
+     }).catch(err => console.log(err));
+}
+
+
 
 //handle the blogs
 app.get('/', (req, res) =>{
-    //-1: from the newest to the oldest
-         Blog.find().sort({createdAt: -1})
-        .then(result => {
-            res.render('index', {blogs: result});
-        }).catch(err => console.log(err));
+    getFromCollection(Blog, 'index', req, res);
 });
 
 app.get('/services', (req, res) =>{
@@ -46,12 +57,13 @@ app.get('/services', (req, res) =>{
 
 app.get('/blog/details/:id', (req, res) =>{
     const id = req.params.id;
+    //find the blog by the id 
     Blog.findById(id)
         .then(result =>{
-            Comment.find({blogId: id})
+            //fetch the comments 
+            Comment.find({blogId: id}).sort({createdAt: -1})
                     .then(commentsResult =>{
-                        console.log(commentsResult);
-                        res.render('blog', {blog: result, comments: commentsResult});
+                        res.render('blog', {blog: result, comments: commentsResult, moment });
                     })
             
         })
@@ -78,6 +90,41 @@ app.post('/blog/details/:id', (req, res) =>{
            })
            .catch(err => console.log(err));
  });
+
+ //admin route
+ app.get('/admin', (req, res) =>{
+    getFromCollection(Blog, './admin/admin', req, res);
+});
+
+app.get('/admin/blog/details/:id', (req, res) =>{
+    const id = req.params.id;
+    //find the blog by the id 
+    Blog.findById(id)
+        .then(result =>{
+            //fetch the comments 
+            Comment.find({blogId: id}).sort({createdAt: -1})
+                    .then(commentsResult =>{
+                        res.render('./admin/blog', {blog: result, comments: commentsResult, moment });
+                    })
+            
+        })
+        .catch(err => console.log(err));
+});
+
+app.get('/admin/blog/details/:id', (req, res) =>{
+    const id = req.params.id;
+    //find the blog by the id 
+    Blog.findById(id)
+        .then(result =>{
+            //fetch the comments 
+            Comment.find({blogId: id}).sort({createdAt: -1})
+                    .then(commentsResult =>{
+                        res.render('./admin/blog', {blog: result, comments: commentsResult, moment });
+                    })
+            
+        })
+        .catch(err => console.log(err));
+});
 
  //404 middleware
  app.use((req, res) => {

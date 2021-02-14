@@ -12,6 +12,10 @@
     font-family: 'Open Sans', sans-serif;
 }
 
+h1,h2,h3,h4,h5,a{
+    font-family: 'Open Sans', sans-serif;
+}
+
 article{
     margin: 50px 0px;
 }
@@ -27,4 +31,17 @@ blockquote {
 .collection .collection-item.avatar .title {
     font-size: 16px;
     font-weight: bold;
+}
+
+.handling-btn{
+    margin: 10px 5px;
+}
+
+.fixed-action-btn {
+    position: fixed;
+    right: 23px;
+    bottom: 23px;
+    padding-top: 15px;
+    margin-bottom: 0;
+    z-index: 997;
 }

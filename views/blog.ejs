@@ -51,20 +51,7 @@
 
    
    <!-- comments section -->
-   <div class="container">
-    <ul class="collection">
-      <% comments.forEach( comment => {%> 
-      <li class="collection-item avatar">
-        <i class="material-icons circle">person</i>
-        <span class="title bold"> <%= comment.name  %> </span>
-        <blockquote>
-          This is an example quotation that uses the blockquote tag.
-        </blockquote>
-        <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
-      </li>
-      <% }); %> 
-    </ul>
-   </div>
+   <%- include('./partials/comments') %> 
 
    <!-- add comments -->
    <%- include('./partials/commentForm')  %> 
