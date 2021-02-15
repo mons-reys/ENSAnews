@@ -1,14 +1,9 @@
-const { response } = require('express');
 const express = require('express');
 const mongoose = require('mongoose');
-const Blog = require('./models/blog');
-const Comment = require('./models/comment');
-const moment = require('moment');
-const { render } = require('ejs');
 const blogRouter = require('./routes/blogRoutes');
 const app = express();
 const adminRouter = require('./routes/adminRoutes/adminBlogRoutes');
-const blogController = require('./controllers/blogController');
+
 
 
 //set the ejs view engine
@@ -34,16 +29,8 @@ app.use(express.urlencoded({extended: true}));
 
 
 
-
-
-
-
-
-
 //handle the blogs
-app.get('/', (req, res) =>{
-    blogController.blog_index(Blog, 'index', req, res);
-});
+
 
 app.get('/services', (req, res) =>{
     res.render('services');

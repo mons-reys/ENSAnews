@@ -1,24 +1,24 @@
 const express = require('express');
 const router = express.Router();
 const Blog = require('../models/blog');
-const Comment = require('../models/comment');
-const moment = require('moment');
 
-router.get('/details/:id', (req, res) =>{
-    const id = req.params.id;
-    //find the blog by the id 
-    Blog.findById(id)
-        .then(result =>{
-            //fetch the comments 
-            Comment.find({blogId: id}).sort({createdAt: -1})
-                    .then(commentsResult =>{
-                        res.render('blog', {blog: result, comments: commentsResult, moment });
-                    })
-            
-        })
-        .catch(err => console.log(err));
+const blogController = require('../controllers/blogController');
+
+
+//index model
+router.get('/', (req, res) =>{
+    blogController.blog_index(Blog, 'index', req, res);
 });
 
+//get details model
+router.get('/details/:id', (req, res) =>{
+    blogController.blog_details('blog', req, res);
+});
+
+
+router.get('/about', (req, res) =>{
+    res.render('about');
+});
 
 router.get('/create', (req, res) =>{
     res.render('create');
@@ -27,13 +27,7 @@ router.get('/create', (req, res) =>{
 
 //handle the comments
 router.post('/details/:id', (req, res) =>{
-    const commentToSave = {blogId: req.params.id, ...req.body}
-    const comment = new Comment(commentToSave);
-    comment.save()
-           .then(result =>{
-               res.redirect('/blog/details/' + req.params.id);
-           })
-           .catch(err => console.log(err));
+    blogController.blog_comment_post(req, res);
  });
 
 
