@@ -33,8 +33,8 @@
                             <div class="card">
                                 <div class="card-image">
                                     <img src="img/curry.jpg" alt="">
-                                    <a href="#" class="halfway-fab btn-floating yellow darken-3 pulse">
-                                        <i class="material-icons">trending_up</i>
+                                    <a href="#" class="halfway-fab btn-floating yellow darken-4 pulse">
+                                        <i class="fa fa-fire"></i>
                                     </a>
                                 </div>
                                 <div class="card-content">
@@ -78,6 +78,10 @@
     $(document).ready(function(){
         $('.sidenav').sidenav();
         $('.slider').slider();
+        $('.tap-target').tapTarget();
+        $('#open').click(function(){
+            $('.tap-target').tapTarget('open');
+        })
     });
 </script>  
 </body>

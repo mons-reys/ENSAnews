@@ -45,3 +45,7 @@ blockquote {
     margin-bottom: 0;
     z-index: 997;
 }
+.popup-title{
+    font-family:  'Open Sans', sans-serif; 
+    font-weight: bold;
+}
