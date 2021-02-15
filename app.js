@@ -5,8 +5,10 @@ const Blog = require('./models/blog');
 const Comment = require('./models/comment');
 const moment = require('moment');
 const { render } = require('ejs');
-
+const blogRouter = require('./routes/blogRoutes');
 const app = express();
+const adminRouter = require('./routes/adminRoutes/adminBlogRoutes');
+const blogController = require('./controllers/blogController');
 
 
 //set the ejs view engine
@@ -33,117 +35,29 @@ app.use(express.urlencoded({extended: true}));
 
 
 
-//routes
-//costume functions
 
-//to find data based on the collection and the view path
-const getFromCollection = (collection, view, req, res) =>{
-     //-1: from the newest to the oldest
-     collection.find().sort({createdAt: -1})
-     .then(result => {
-         res.render(view, {blogs: result});
-     }).catch(err => console.log(err));
-}
 
-//to delete a blog based on id and path 
-const deleteById = (redirecPath, req, res) =>{
-        const id = req.params.id;
-        //find the blog by the id 
-        Blog.findByIdAndDelete(id)
-            .then(result =>{
-                res.json({
-                    redirect: redirecPath
-                })
-            })
-            .catch(err => console.log(err));
-}
 
 
 
 //handle the blogs
 app.get('/', (req, res) =>{
-    getFromCollection(Blog, 'index', req, res);
+    blogController.blog_index(Blog, 'index', req, res);
 });
 
 app.get('/services', (req, res) =>{
     res.render('services');
 });
 
-app.get('/blog/details/:id', (req, res) =>{
-    const id = req.params.id;
-    //find the blog by the id 
-    Blog.findById(id)
-        .then(result =>{
-            //fetch the comments 
-            Comment.find({blogId: id}).sort({createdAt: -1})
-                    .then(commentsResult =>{
-                        res.render('blog', {blog: result, comments: commentsResult, moment });
-                    })
-            
-        })
-        .catch(err => console.log(err));
-});
-
-
 app.get('/about', (req, res) =>{
     res.render('about');
 });
 
-app.get('/blogs/create', (req, res) =>{
-    res.render('create');
-});
-
-
-//handle the comments
-app.post('/blog/details/:id', (req, res) =>{
-    const commentToSave = {blogId: req.params.id, ...req.body}
-    const comment = new Comment(commentToSave);
-    comment.save()
-           .then(result =>{
-               res.redirect('/blog/details/' + req.params.id);
-           })
-           .catch(err => console.log(err));
- });
+//blog router
+app.use('/blog',blogRouter);
 
  //admin route
- app.get('/admin', (req, res) =>{
-    getFromCollection(Blog, './admin/admin', req, res);
-});
- app.get('/admin/createBlog', (req, res) =>{
-    res.render('admin/createBlog');
-});
-
-app.get('/admin/blog/details/:id', (req, res) =>{
-    const id = req.params.id;
-    //find the blog by the id 
-    Blog.findById(id)
-        .then(result =>{
-            //fetch the comments 
-            Comment.find({blogId: id}).sort({createdAt: -1})
-                    .then(commentsResult =>{
-                        res.render('./admin/blog', {blog: result, comments: commentsResult, moment });
-                    })
-            
-        })
-        .catch(err => console.log(err));
-});
-
-//delete in the index page
-app.delete('/admin/blog/details/:id', (req, res) =>{
-    deleteById('/admin', req, res);
-});
-
-//add new blog
-app.post('/admin/createBlog', (req, res) =>{
-    const blogToSave = req.body
-    const blog = new Blog(blogToSave);
-    blog.save()
-           .then(result =>{
-               res.redirect('/admin');
-           })
-           .catch(err => console.log(err));
- });
-
+ app.use('/admin',adminRouter);
 
  //404 middleware
  app.use((req, res) => {
