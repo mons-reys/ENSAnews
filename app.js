@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const Blog = require('./models/blog');
 const Comment = require('./models/comment');
 const moment = require('moment');
+const { render } = require('ejs');
 
 const app = express();
 
@@ -42,6 +43,19 @@ const getFromCollection = (collection, view, req, res) =>{
      .then(result => {
          res.render(view, {blogs: result});
      }).catch(err => console.log(err));
+}
+
+//to delete a blog based on id and path 
+const deleteById = (redirecPath, req, res) =>{
+        const id = req.params.id;
+        //find the blog by the id 
+        Blog.findByIdAndDelete(id)
+            .then(result =>{
+                res.json({
+                    redirect: redirecPath
+                })
+            })
+            .catch(err => console.log(err));
 }
 
 
@@ -95,20 +109,8 @@ app.post('/blog/details/:id', (req, res) =>{
  app.get('/admin', (req, res) =>{
     getFromCollection(Blog, './admin/admin', req, res);
 });
-
-app.get('/admin/blog/details/:id', (req, res) =>{
-    const id = req.params.id;
-    //find the blog by the id 
-    Blog.findById(id)
-        .then(result =>{
-            //fetch the comments 
-            Comment.find({blogId: id}).sort({createdAt: -1})
-                    .then(commentsResult =>{
-                        res.render('./admin/blog', {blog: result, comments: commentsResult, moment });
-                    })
-            
-        })
-        .catch(err => console.log(err));
+ app.get('/admin/createBlog', (req, res) =>{
+    res.render('admin/createBlog');
 });
 
 app.get('/admin/blog/details/:id', (req, res) =>{
@@ -125,6 +127,12 @@ app.get('/admin/blog/details/:id', (req, res) =>{
         })
         .catch(err => console.log(err));
 });
+
+//delete in the index page
+app.delete('/admin/blog/details/:id', (req, res) =>{
+    deleteById('/admin', req, res);
+});
+
 
  //404 middleware
  app.use((req, res) => {

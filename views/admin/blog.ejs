@@ -45,7 +45,7 @@
           <a href="#" class="btn-floating green tooltipped handling-btn" data-position="left" data-tooltip="edit">
             <i class="material-icons">edit</i>
           </a>
-          <a href="#" class="btn-floating red tooltipped handling-btn" data-position="right" data-tooltip="delete">
+          <a href="#" class="btn-floating red  tooltipped handling-btn delete" data-doc="<%= blog._id %>" data-position="right" data-tooltip="delete">
               <i class="material-icons">delete</i>
           </a>
           <p><%= blog.body %> </p>
@@ -80,6 +80,24 @@
         });
         $('.tooltipped').tooltip();
     });
+</script>
+<!-- costume scripts -->
+<script>
+  const trashcan = document.querySelector('a.delete');
+  if(trashcan){
+   trashcan.addEventListener('click', e => {
+       const endpoint = `/admin/blog/details/${trashcan.dataset.doc}`;
+
+       fetch(endpoint, {
+           method: 'DELETE'
+       })
+       .then(response => {
+           return response.json();
+       })
+       .then(data => window.location.href =  data.redirect)
+       .catch(err => console.log(err))
+   })
+  }
 </script>  
 </body>
 </html>

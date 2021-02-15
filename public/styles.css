@@ -49,3 +49,16 @@ blockquote {
     font-family:  'Open Sans', sans-serif; 
     font-weight: bold;
 }
+
+/* new blog style */
+.newBlog .body{
+    height: 300px;
+    background-color: rgba(245, 245, 245, 0.2);
+    border-radius:  0px 20px 20px 0px ;
+}
+.newBlog .input-field .snippet{
+    height: 100px;
+    background-color: rgba(245, 245, 245, 0.2);
+    border-radius:  0px 20px 20px 0px ;
+    
+}
