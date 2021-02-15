@@ -133,6 +133,17 @@ app.delete('/admin/blog/details/:id', (req, res) =>{
     deleteById('/admin', req, res);
 });
 
+//add new blog
+app.post('/admin/createBlog', (req, res) =>{
+    const blogToSave = req.body
+    const blog = new Blog(blogToSave);
+    blog.save()
+           .then(result =>{
+               res.redirect('/admin');
+           })
+           .catch(err => console.log(err));
+ });
+
 
  //404 middleware
  app.use((req, res) => {

@@ -1,0 +1,77 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- font awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!-- costume css -->
+    <link rel="stylesheet" href="/styles.css">
+    <title>ENSAnews | Home</title>
+</head>
+<body>
+   <header>
+        <%- include ('../partials/header.ejs') %>
+   </header>
+    <section>
+        <div class="container newBlog">
+            <form action="/admin/createBlog" method="POST" class="title">
+                <div class="input-field">
+                    <i class="material-icons prefix">format_size</i>
+                    <input type="text" id="name" name="title" class="">
+                    <label for="name">Title...</label>
+                </div>
+                <div class="carousel carousel-slider center">
+                    <div class="carousel-fixed-item center">
+                    <a class="btn-floating btn-large waves-effect waves-light grey lighten-4 update-blog-cover tooltipped" data-position="top" data-tooltip="update cover"><i class="material-icons black-text">add</i></a>
+                    </div>
+                    <div class="carousel-item red white-text" href="#one!">
+                    <h2>First Panel</h2>
+                    <p class="white-text">This is your first panel</p>
+                    </div>
+                </div>
+                <div class="input-field">
+                    <i class="material-icons prefix">format_quote</i>
+                    <input type="text" id="snippet" name="snippet" class="snippet">
+                    <label for="snippet">snippet...</label>
+                </div>   
+                <div class="post-content">
+                    <div class="input-field">
+                        <i class="material-icons prefix">format_align_justify</i>
+                        <textarea name="body" id="body" class="materialize-textarea body"></textarea>
+                        <label for="comment">body...</label>
+                    </div>
+                </div>
+                <div class="input-field center">
+                    <button class="btn indigo indigo-darken4">add post</button>
+                    <input type="reset" class="btn red lighten-1 indigo-darken4">
+                </div>
+            </form>
+            <!-- divider -->
+            <div class="divider"></div>
+        </div>
+    </section>
+       
+   <footer class="page-footer grey darken-3">
+        <%- include ('../partials/footer.ejs') %>
+   </footer>
+<!-- jquey -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<!-- Compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<!-- sidenav and nav script  -->
+<script>
+    $(document).ready(function(){
+        $('.sidenav').sidenav();
+        $('.carousel.carousel-slider').carousel({
+            fullWidth: true,
+            indicators: true
+        });
+    });
+</script>  
+</body>
+</html>
