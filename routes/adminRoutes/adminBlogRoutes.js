@@ -10,28 +10,18 @@ const adminBlogController = require('../../controllers/adminBlogController');
 
 
 //admin index model
-router.get('/', (req, res) =>{
-    blogController.blog_index(Blog, './admin/admin', req, res);
-});
+router.get('/', adminBlogController.blog_index);
 
 //create blog model
- router.get('/createBlog', (req, res) =>{
-    adminBlogController.blog_create_get(req, res);
-});
+ router.get('/createBlog', adminBlogController.blog_create_get);
 
 //comments model
-router.get('/blog/details/:id', (req, res) =>{
-    blogController.blog_details('admin/blog',req, res);
-});
+router.get('/blog/details/:id', adminBlogController.blog_details);
 
 //delete in the index page
-router.delete('/blog/details/:id', (req, res) =>{
-    adminBlogController.blog_delete('/admin', req, res);
-});
+router.delete('/blog/details/:id', adminBlogController.blog_delete);
 
 //add new blog
-router.post('/createBlog', (req, res) =>{
-    adminBlogController.blog_create_post(req, res);
- });
+router.post('/createBlog', adminBlogController.blog_create_post);
 
  module.exports = router;
