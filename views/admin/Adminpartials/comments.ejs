@@ -1,0 +1,18 @@
+<div class="container">
+    <h4>All comments: </h4>
+    <ul class="collection">
+      <% comments.forEach( comment => {%> 
+      <li class="collection-item avatar">
+        <i class="material-icons circle">person</i>
+        <span class="title bold"> <%= comment.name  %> </span>
+        <blockquote>
+          <%= comment.commentContent %> 
+        </blockquote>
+        <p class="secondary-content"><%= moment(comment.createdAt).fromNow()  %> </p>
+        <a href="#" class="secondary-content delete-comment" data-com="<%= comment._id %>"  data-position="right" data-tooltip="delete"><i class="material-icons">delete</i></a>
+      </li>
+      <% }); %> 
+    </ul>
+    <!-- divider -->
+    <div class="divider"></div>
+</div>

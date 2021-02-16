@@ -57,11 +57,9 @@
 
    
    <!-- comments section -->
-   <%- include('../partials/comments') %> 
-
-   <!-- add comments -->
-   <%- include('../partials/commentForm')  %> 
-       
+   <%- include('./Adminpartials/comments') %>       
+   <!-- comments section -->
+   <%- include('../partials/commentForm') %>       
 
    <footer class="page-footer grey darken-3">
         <%- include ('../partials/footer.ejs') %>
@@ -83,11 +81,8 @@
 </script>
 <!-- costume scripts -->
 <script>
-  const trashcan = document.querySelector('a.delete');
-  if(trashcan){
-   trashcan.addEventListener('click', e => {
-       const endpoint = `/admin/blog/details/${trashcan.dataset.doc}`;
-
+  const deleteData = (elementSelected, endpoint) => {
+    elementSelected.addEventListener('click', e => {
        fetch(endpoint, {
            method: 'DELETE'
        })
@@ -97,7 +92,43 @@
        .then(data => window.location.href =  data.redirect)
        .catch(err => console.log(err))
    })
-  }
+}
+ 
+  const deleteComLinks = document.querySelectorAll('a.delete-comment');
+  const trashcan = document.querySelector('a.delete');
+  //handle comments
+  deleteComLinks.forEach(deleteComLink =>{
+      if(deleteComLink){
+      deleteData(deleteComLink ,`/admin/blog/details/${trashcan.dataset.doc}/${deleteComLink.dataset.com}`);
+    }
+  })
+
+  //handle blogs
+  if(deleteComLink){
+      deleteData(trashcan ,`/admin/blog/details/${trashcan.dataset.doc}`);
+    }
+
+
+
+
+  
+  
+  // if(trashcan){
+  //  trashcan.addEventListener('click', e => {
+  //      const endpoint = `/admin/blog/details/${trashcan.dataset.doc}`;
+
+  //      fetch(endpoint, {
+  //          method: 'DELETE'
+  //      })
+  //      .then(response => {
+  //          return response.json();
+  //      })
+  //      .then(data => window.location.href =  data.redirect)
+  //      .catch(err => console.log(err))
+  //  })
+  // }
+
+ 
 </script>  
 </body>
 </html>

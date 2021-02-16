@@ -1,6 +1,7 @@
 const Blog = require('../models/blog');
 const Comment = require('../models/comment');
 const moment = require('moment');
+const { findById, findByIdAndDelete } = require('../models/blog');
 
 //index page controller
 const blog_index = (req, res) =>{
@@ -24,6 +25,19 @@ const blog_delete = ( req, res) =>{
         .catch(err => console.log(err));
 }
 
+//comment_delete
+const comment_delete = (req, res) =>{
+    const id = req.params.comment_id;
+    console.log(id);
+    Comment.findByIdAndDelete(id)
+        .then(result => {
+            console.log(result);
+            res.json({
+                redirect: '/admin'
+            })
+        })
+        .catch(err => console.log(err));
+}
 //blog_create_get
 const blog_create_get = (req, res) =>{
     res.render('admin/createBlog');
@@ -65,6 +79,7 @@ module.exports = {
     blog_create_get,
     blog_create_post,
     blog_index,
-    blog_details
+    blog_details,
+    comment_delete
 
 }
