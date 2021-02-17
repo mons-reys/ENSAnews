@@ -1,7 +1,5 @@
-const Blog = require('../../models/blog')
 const express = require('express');
 const router = express.Router();
-const blogController = require('../../controllers/blogController');
 const adminBlogController = require('../../controllers/adminBlogController');
 
 //routes
@@ -27,6 +25,8 @@ router.delete('/blog/details/:id', adminBlogController.blog_delete);
 
 //add new blog
 router.post('/createBlog', adminBlogController.blog_create_post);
+
+
 
 
 
