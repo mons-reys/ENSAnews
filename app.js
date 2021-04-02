@@ -14,7 +14,6 @@ app.set('view engine', 'ejs');
 const dbURL = 'mongodb+srv://mons:rowrow2020@cluster0.tqs3m.mongodb.net/ensanews?retryWrites=true&w=majority';
 mongoose.connect(dbURL, {
     useNewUrlParser: true,
-    useUnifiedTopology: true,
   })
     .then((result) => {
         //listen for a request 
@@ -36,12 +35,16 @@ app.get('/services', (req, res) =>{
     res.render('services');
 });
 
+//blog router
+app.use('/blog',blogRouter);
+
 app.get('/about', (req, res) =>{
     res.render('about');
 });
 
-//blog router
-app.use('/blog',blogRouter);
+
+
+
 //auth
 app.use('/admin', authRouter);
 //admin route

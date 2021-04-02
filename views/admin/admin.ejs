@@ -29,9 +29,9 @@
                 <%if(blogs.length > 0) { %>
                     <% blogs.forEach(blog => { %>   
                         <div class="col s12 l6">
-                            <div class="card">
+                            <div class="card ">
                                 <div class="card-image">
-                                    <img src="<%= blog.img  %>" alt="">
+                                    <img src="images/<%= blog.img  %>" alt="">
                                     
                                     <a class="btn-floating green tooltipped handling-btn " data-position="left" data-tooltip="edit">
                                         <i class="material-icons">edit</i>
@@ -40,7 +40,7 @@
                                         <i class="material-icons">delete</i>
                                     </a>
                                 </div>
-                                <div class="card-content">
+                                <div class="card-content blogCardConten">
                                     <span class="card-title"><%= blog.title %></span>
                                     <p><%= blog.snippet %></p>
                                 </div>
@@ -89,21 +89,23 @@
 <!-- costume scripts -->
 <script>
     //delete blog 
-   const trashcan = document.querySelector('a.delete');
-   if(trashcan){
-    trashcan.addEventListener('click', e => {
-        const endpoint = `/admin/blog/details/${trashcan.dataset.doc}`;
+   const trashcans = document.querySelectorAll('a.delete');
+   trashcans.forEach(trashcan => {
+        if(trashcan){
+        trashcan.addEventListener('click', e => {
+            const endpoint = `/admin/blog/details/${trashcan.dataset.doc}`;
 
-        fetch(endpoint, {
-            method: 'DELETE'
+            fetch(endpoint, {
+                method: 'DELETE'
+            })
+            .then(response => {
+                return response.json();
+            })
+            .then(data => window.location.href =  data.redirect)
+            .catch(err => console.log(err))
         })
-        .then(response => {
-            return response.json();
-        })
-        .then(data => window.location.href =  data.redirect)
-        .catch(err => console.log(err))
-    })
-   }
+    }
+   })
 </script>
 </body>
 </html>

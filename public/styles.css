@@ -97,3 +97,11 @@ blockquote {
 .card-image img{
     max-height: 400px;
 }
+
+.blogCardConten{
+    height: 180px;
+    max-height: 180px;
+    overflow: hidden;
+    text-overflow: ellipsis; 
+    
+}

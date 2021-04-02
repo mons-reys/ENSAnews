@@ -18,27 +18,16 @@
         <%- include ('../partials/header.ejs') %>
    </header>
    <article>
+      
       <div class="container">
         <h2><%= blog.title %> </h2>
         <div class="carousel carousel-slider center">
           <div class="carousel-fixed-item center">
             <a class="btn-floating btn-large waves-effect waves-light grey lighten-4 update-blog-cover tooltipped" data-position="top" data-tooltip="update cover"><i class="material-icons black-text">add</i></a>
           </div>
-          <div class="carousel-item red white-text" href="#one!">
-            <h2>First Panel</h2>
-            <p class="white-text">This is your first panel</p>
-          </div>
-          <div class="carousel-item amber white-text" href="#two!">
-            <h2>Second Panel</h2>
-            <p class="white-text">This is your second panel</p>
-          </div>
-          <div class="carousel-item green white-text" href="#three!">
-            <h2>Third Panel</h2>
-            <p class="white-text">This is your third panel</p>
-          </div>
-          <div class="carousel-item blue white-text" href="#four!">
-            <h2>Fourth Panel</h2>
-            <p class="white-text">This is your fourth panel</p>
+          <div class="carousel-item red white-text blogImage" style="background-image: url('../../../images/<%= blog.img %>');" href="#one!">
+            <h1 class="brand-logo logo"><span>ENSA</span>news</h1>
+            <p class="white-text">keep you in touch</p>
           </div>
         </div>
         <div class="post-content">
@@ -97,13 +86,14 @@
   const trashcan = document.querySelector('a.delete');
   //handle comments
   deleteComLinks.forEach(deleteComLink =>{
-      if(deleteComLink){
+    if(deleteComLink){
       deleteData(deleteComLink ,`/admin/blog/details/${trashcan.dataset.doc}/${deleteComLink.dataset.com}`);
     }
   })
+     
 
   //handle blogs
-  if(deleteComLink){
+  if(trashcan){
       deleteData(trashcan ,`/admin/blog/details/${trashcan.dataset.doc}`);
     }
 

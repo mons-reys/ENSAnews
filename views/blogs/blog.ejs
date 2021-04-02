@@ -20,19 +20,21 @@
   <header>
     <%- include ('../partials/header.ejs') %>
   </header>
-  <%var hex = /[0-9A-Fa-f]{6}/g;
-  const src = hex.test(blog.img) %>
-  <img src="<%= src  %> " alt="">
   <article>
     <div class="container ">
       <div class="row">
         <h2 class="col l12">
           <%= blog.title %>
         </h2>
-        <div >
-          
+        <div class="carousel carousel-slider center">
+          <div class="carousel-fixed-item center">
+            <a class="btn-floating btn-large waves-effect waves-light grey lighten-4 update-blog-cover tooltipped" data-position="top" data-tooltip="update cover"><i class="material-icons black-text">add</i></a>
+          </div>
+          <div class="carousel-item red white-text blogImage" style="background-image: url('../../../images/<%= blog.img %>'); background-repeat: no-repeat;
+            background-size:100% 100%; " href="#one!">
+            
+          </div>
         </div>
-  
         <div class="post-content ">
           <p class="bodyBlog">
             <%= blog.body %>

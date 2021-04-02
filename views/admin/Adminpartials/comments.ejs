@@ -9,7 +9,7 @@
           <%= comment.commentContent %> 
         </blockquote>
         <p class="secondary-content"><%= moment(comment.createdAt).fromNow()  %> </p>
-        <a href="#" class="secondary-content delete-comment" data-com="<%= comment._id %>"  data-position="right" data-tooltip="delete"><i class="material-icons">delete</i></a>
+        <a href="#" class="secondary-content delete-comment" data-com="<%= comment._id %>" data-post="<%= blog._id %>"  data-position="right" data-tooltip="delete"><i class="material-icons">delete</i></a>
       </li>
       <% }); %> 
     </ul>

@@ -34,16 +34,20 @@ const blog_delete = (req, res) =>{
 //comment_delete
 const comment_delete = (req, res) =>{
     const id = req.params.comment_id;
+    const blogId = req.params.post_id;
     console.log(id);
     Comment.findByIdAndDelete(id)
         .then(result => {
             console.log(result);
             res.json({
-                redirect: '/admin'
+                redirect: '/admin' 
             })
+            console.log(blogId);
         })
         .catch(err => console.log(err));
 }
+
+
 //blog_create_get
 const blog_create_get = (req, res) =>{
     res.render('admin/createBlog');
