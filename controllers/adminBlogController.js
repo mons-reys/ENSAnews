@@ -2,6 +2,12 @@ const Blog = require('../models/blog');
 const Comment = require('../models/comment');
 const moment = require('moment');
 const { findById, findByIdAndDelete } = require('../models/blog');
+var multer = require('multer');
+var fs = require('fs');
+var path = require('path');
+var bodyParser = require('body-parser');
+
+
 
 //index page controller
 const blog_index = (req, res) =>{
@@ -13,7 +19,7 @@ const blog_index = (req, res) =>{
 }
 
 //blog_delete
-const blog_delete = ( req, res) =>{
+const blog_delete = (req, res) =>{
     const id = req.params.id;
     //find the blog by the id 
     Blog.findByIdAndDelete(id)
@@ -43,9 +49,17 @@ const blog_create_get = (req, res) =>{
     res.render('admin/createBlog');
 }
 
+
+
 //blog_create_post
 const blog_create_post = (req, res) =>{
-    const blogToSave = req.body
+    console.log(req.file);
+    const blogToSave = {
+        title: req.body.title,
+        snippet: req.body.snippet,
+        img: req.file.filename,
+        body: req.body.body
+    }
     const blog = new Blog(blogToSave);
     blog.save()
            .then(result =>{
@@ -71,6 +85,7 @@ const blog_details = (req, res) =>{
         .catch(err => console.log(err));
 }
 
+//auth
 
 
 //

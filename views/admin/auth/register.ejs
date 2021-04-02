@@ -32,13 +32,31 @@
                     <input type="text" id="email" name="email" class="">
                     <label for="email">email</label>
                 </div>
+                <div class="input-field l4">
+                    <i class="material-icons prefix">school</i>
+                    <select class="icons" name="university">
+                      <option value="" disabled selected>Select your school</option>
+                      <option value="ENSA Al Hoceima" data-icon="../img/ensa_logos/hoceima.jpg" class="left">ENSA Al Hoceima </option>
+                      <option value="ENSA Berrechid" data-icon="../img/ensa_logos/berrchid.gif" class="left">ENSA Berrechid </option>
+                      <option value="ENSA El Jadida" data-icon="../img/ensa_logos/eljadida.png" class="left">ENSA El Jadida </option>
+                      <option value="ENSA Safi" data-icon="../img/ensa_logos/safi.png" class="left">ENSA Safi </option>
+                      <option value="ENSA Khouribga" data-icon="../img/ensa_logos/Khouribga.png" class="left">ENSA Khouribga </option>
+                      <option value="ENSA Tétouan" data-icon="../img/ensa_logos/tetouan.png" class="left">ENSA Tétouan </option>
+                      <option value="ENSA Kénitra" data-icon="../img/ensa_logos/kenitra.png" class="left">ENSA Kénitra </option>
+                      <option value="ENSA Marrakech" data-icon="../img/ensa_logos/marrakech.png" class="left">ENSA Marrakech </option>
+                      <option value="ENSA Fès" data-icon="../img/ensa_logos/fes.png" class="left">ENSA Fès </option>
+                      <option value="ENSA Oujda" data-icon="../img/ensa_logos/oujda.png" class="left">ENSA Oujda </option>
+                      <option value="ENSA Agadir" data-icon="../img/ensa_logos/agadir.png" class="left">ENSA Agadir </option>
+                    </select>
+                    <label>School</label>
+                </div>
                 <div class="input-field">
                     <i class="material-icons prefix">lock</i>
                     <input type="password" id="password" name="password" class="">
                     <label for="password">password</label>
                 </div>
                 <div class="input-field center">
-                    <button class="btn indigo indigo-darken4">login</button>
+                    <button class="btn indigo indigo-darken4">register</button>
                 </div>
             </form>
         </div>
@@ -59,6 +77,7 @@
         $('.slider').slider();
         $('.tooltipped').tooltip();
         $('.modal').modal();
+         $('select').formSelect();
     });
 </script>  
 <!-- costume scripts -->

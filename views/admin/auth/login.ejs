@@ -32,6 +32,9 @@
                     <input type="password" id="password" name="password" class="">
                     <label for="password">password</label>
                 </div>
+                <%if(msg) { %> 
+                    <h5 class="center red-text darken-2"> <%= msg %> </h5>
+                <% } %>   
                 <div class="input-field center">
                     <button class="btn indigo indigo-darken4">login</button>
                 </div>

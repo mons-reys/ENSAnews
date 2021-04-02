@@ -1,5 +1,6 @@
 const Auth = require('../models/auth/auth');
 const bcrypt = require('bcrypt');
+const { render } = require('ejs');
 
 
 
@@ -14,10 +15,8 @@ const login = (req, res) =>{
     const isEmpty = (obj) => {
         return Object.keys(obj).length 
     }
-    
-    
     if(isEmpty(req.body) == 0){
-       res.render('./admin/auth/login'); 
+       res.render('./admin/auth/login', {msg: ''}); 
     } else {
         const user = req.body;
         Auth.find({
@@ -36,20 +35,23 @@ const logged = async (req, res) =>{
         })
         .then(result =>{
             if(result.length == 0){
-                res.render('404');
+                const message = 'username or password incorrect'
+                res.render('./admin/auth/login', {msg: message});
             }else{
               return result  
             }
         })
-        .then(date => {
-            const checkPass = await bcrypt.compare(req.body.password, result.password);
-                try{
-                   if( checkPass){
-                    console.log('true');
-                    }
-                }catch{
-                    console.log('err');
+        .then(data => {
+            //check the password
+            const password = data[0].password;
+            bcrypt.compare(user.password, password).then(function(result) {
+                if(result){
+                    res.redirect('/admin');
+                }else{
+                    const message = 'username or password incorrect'
+                    res.redirect('/admin/login', {msg: message});
                 }
+            });
         })
         .catch(err => console.log(err));
 }
@@ -70,6 +72,7 @@ const user_create_post = async (req, res) =>{
                 const user = {
                     username: req.body.username,
                     email: req.body.email,
+                    university: req.body.university,
                     password: data
                 } 
                 return user;

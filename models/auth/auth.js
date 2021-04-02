@@ -10,6 +10,10 @@ const authSchema = new Schema({
         type: String,
         required: true
     },
+    university: {
+        type: String,
+        required: true
+    },
     password: {
         type: String,
         required: true

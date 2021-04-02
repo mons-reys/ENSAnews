@@ -42,10 +42,10 @@
           </div>
         </div>
         <div class="post-content">
-          <a href="#" class="btn-floating green tooltipped handling-btn" data-position="left" data-tooltip="edit">
+          <a class="btn-floating green tooltipped handling-btn" data-position="left" data-tooltip="edit">
             <i class="material-icons">edit</i>
           </a>
-          <a href="#" class="btn-floating red  tooltipped handling-btn delete" data-doc="<%= blog._id %>" data-position="right" data-tooltip="delete">
+          <a class="btn-floating red  tooltipped handling-btn delete" data-doc="<%= blog._id %>"  data-position="right" data-tooltip="delete">
               <i class="material-icons">delete</i>
           </a>
           <p><%= blog.body %> </p>
@@ -93,7 +93,6 @@
        .catch(err => console.log(err))
    })
 }
- 
   const deleteComLinks = document.querySelectorAll('a.delete-comment');
   const trashcan = document.querySelector('a.delete');
   //handle comments

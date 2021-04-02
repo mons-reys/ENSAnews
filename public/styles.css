@@ -83,3 +83,17 @@ blockquote {
     margin-top: 30px;
     color: red;
 }
+
+.add_btn{
+    height: 60px;
+    width: 60px;
+    background-color: white;
+}
+
+.add_btn i{
+    padding-top: 10px;
+}
+
+.card-image img{
+    max-height: 400px;
+}

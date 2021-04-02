@@ -25,14 +25,13 @@ mongoose.connect(dbURL, {
 
 
 //middleware and static files
-app.use(express.static('public'));
+app.use(express.static('public'))
+app.use(express.static('uploads'))
 app.use(express.urlencoded({extended: true}));
 
 
 
 //handle the blogs
-
-
 app.get('/services', (req, res) =>{
     res.render('services');
 });
@@ -43,11 +42,10 @@ app.get('/about', (req, res) =>{
 
 //blog router
 app.use('/blog',blogRouter);
-
 //auth
 app.use('/admin', authRouter);
- //admin route
- app.use('/admin',adminRouter);
+//admin route
+app.use('/admin',adminRouter);
  
 
  //404 middleware

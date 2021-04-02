@@ -32,8 +32,8 @@
                         <div class="col s12 l6">
                             <div class="card">
                                 <div class="card-image">
-                                    <img src="img/curry.jpg" alt="">
-                                    <a href="#" class="halfway-fab btn-floating yellow darken-4 pulse">
+                                    <img src="<%= blog.img %>" alt="">
+                                    <a href="/blog/details/<%= blog._id%> " class="halfway-fab btn-floating yellow darken-4 pulse">
                                         <i class="fa fa-fire"></i>
                                     </a>
                                 </div>
@@ -80,7 +80,8 @@
         $('.slider').slider();
         $('.tap-target').tapTarget();
         $('#open').click(function(){
-            $('.tap-target').tapTarget('open');
+        $('.tap-target').tapTarget('open');
+        $('select').formSelect();
         })
     });
 </script>  

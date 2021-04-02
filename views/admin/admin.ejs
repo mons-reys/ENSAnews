@@ -31,7 +31,8 @@
                         <div class="col s12 l6">
                             <div class="card">
                                 <div class="card-image">
-                                    <img src="img/curry.jpg" alt="">
+                                    <img src="<%= blog.img  %>" alt="">
+                                    
                                     <a class="btn-floating green tooltipped handling-btn " data-position="left" data-tooltip="edit">
                                         <i class="material-icons">edit</i>
                                     </a>
@@ -82,6 +83,7 @@
         $('.slider').slider();
         $('.tooltipped').tooltip();
         $('.modal').modal();
+        $('select').formSelect();
     });
 </script>  
 <!-- costume scripts -->
